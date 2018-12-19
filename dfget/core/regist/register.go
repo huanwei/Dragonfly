@@ -1,5 +1,5 @@
 /*
- * Copyright 1999-2018 Alibaba Group.
+ * Copyright The Dragonfly Authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -73,7 +73,7 @@ func (s *supernodeRegister) Register(peerPort int) (*RegisterResult, *errors.DFG
 		if resp.Code == config.TaskCodeWaitAuth && retryTimes < 3 {
 			i--
 			retryTimes++
-			s.ctx.ClientLogger.Infof("sleep 2.5s to wait auth(%d/3)...", retryTimes, 3)
+			s.ctx.ClientLogger.Infof("sleep 2.5s to wait auth(%d/3)...", retryTimes)
 			time.Sleep(2500 * time.Millisecond)
 		}
 	}

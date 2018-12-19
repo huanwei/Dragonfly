@@ -33,11 +33,30 @@ public interface PreheatService {
     boolean delete(String id);
 
     /**
-     * Preheat a task
+     * update a preheat task
+     *
+     * @param id the id of preheat task
+     * @param task the preheat task
+     * @return true if updated
+     */
+    boolean update(String id, PreheatTask task);
+
+    /**
+     * create a preheat task
      *
      * @param task the preheat task information
      * @return preheat task's id
      * @throws PreheatException exception
      */
-    String preheat(PreheatTask task) throws PreheatException;
+    String createPreheatTask(PreheatTask task) throws PreheatException;
+
+    /**
+     * execute preheat task
+     *
+     * @param task the preheat task
+     * @return a PreheatProcess that executing the preheat task.
+     *          return null if there's no necessary to preheat this task
+     * @throws PreheatException any exception occurred
+     */
+    PreheatProcess executePreheat(PreheatTask task) throws PreheatException;
 }

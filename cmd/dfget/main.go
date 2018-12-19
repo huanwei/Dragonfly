@@ -1,5 +1,5 @@
 /*
- * Copyright 1999-2018 Alibaba Group.
+ * Copyright The Dragonfly Authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,13 +17,9 @@
 package main
 
 import (
-	"github.com/dragonflyoss/Dragonfly/dfget/cli"
+	"github.com/dragonflyoss/Dragonfly/cmd/dfget/app"
 )
 
 func main() {
-	// TODO: refactor 'dfget' with GoLang
-	// the current dfget is written by python in 'src/getter'
-	// This main function is just the entry of dfget, the other operations
-	// must be controlled in package CLI.
-	cli.Run()
+	app.Execute()
 }

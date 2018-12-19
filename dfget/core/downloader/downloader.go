@@ -1,5 +1,5 @@
 /*
- * Copyright 1999-2018 Alibaba Group.
+ * Copyright The Dragonfly Authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -134,7 +134,7 @@ func moveFile(src string, dst string, expectMd5 string, log *logrus.Logger) erro
 	}
 	err := util.MoveFile(src, dst)
 
-	log.Infof("move src:%s to dst:%s result:%s cost:%.3f",
+	log.Infof("move src:%s to dst:%s result:%t cost:%.3f",
 		src, dst, err == nil, time.Since(start).Seconds())
 	return err
 }

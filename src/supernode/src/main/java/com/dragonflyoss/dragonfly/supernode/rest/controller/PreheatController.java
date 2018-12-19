@@ -1,5 +1,5 @@
 /*
- * Copyright 1999-2018 Alibaba Group.
+ * Copyright The Dragonfly Authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -73,16 +73,16 @@ public class PreheatController {
         task.setIdentifier(request.getIdentifier());
         task.setHeaders(request.getHeaders());
         try {
-            String id = preheatService.preheat(task);
+            String id = preheatService.createPreheatTask(task);
             PreheatCreateResponse res = new PreheatCreateResponse();
             res.setId(id);
             response = new ResponseEntity<>(res, HttpStatus.OK);
         } catch (PreheatException e) {
-            log.error("createPreheatTask req:{}", JSON.toJSONString(request), e);
+            log.error("createPreheatTask req:{} error:{}", JSON.toJSONString(request), e.getMessage(), e);
             response = new ResponseEntity<>(new ErrorResponse(e.getCode(), e.getMessage()),
-                HttpStatus.BAD_REQUEST);
+                HttpStatus.valueOf(e.getCode()));
         } catch (RejectedExecutionException e) {
-            log.error("createPreheatTask req:{}", JSON.toJSONString(request), e);
+            log.error("createPreheatTask req:{} error:{}", JSON.toJSONString(request), e.getMessage(), e);
             response = new ResponseEntity<>(new ErrorResponse(500, e.getMessage()),
                 HttpStatus.INTERNAL_SERVER_ERROR);
         }
